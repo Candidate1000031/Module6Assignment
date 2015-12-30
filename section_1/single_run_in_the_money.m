@@ -1,6 +1,7 @@
-function val = single_run(N, M, dt, S0, r, sig, K)
-% SINGLE_RUN computes Longstaff-Schwartz estimate of an American call option
-% for a single run.
+function val = single_run_in_the_money(N, M, dt, S0, r, sig, K)
+% SINGLE_RUN_IN_THE_MONEY computes Longstaff-Schwartz estimate of an American
+% call option for a single run using only paths that are in the money for the
+% regression estimate.
 
     %
     % Phase 1: least squares regression
@@ -14,7 +15,7 @@ function val = single_run(N, M, dt, S0, r, sig, K)
 
     for n = N:-1:2
         P    = exp(-r*dt)*P;                            % discount 
-        ind  = 1:M;                                     % use all paths
+        ind  = find(K > P);                             % paths in the money
         X    = S(n,ind)';
         Y    = P(ind)';
         A    = [ ones(size(X)) (1-X) 1/2*(2-4*X-X.^2)]; % 3 basis functions

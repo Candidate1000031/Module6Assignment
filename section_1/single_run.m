@@ -1,4 +1,4 @@
-function val = single_run(N, M, dt, S0, r, sig, K)
+function [val, betas]  = single_run(N, M, dt, S0, r, sig, K)
 % SINGLE_RUN computes Longstaff-Schwartz estimate of an American call option
 % for a single run.
 

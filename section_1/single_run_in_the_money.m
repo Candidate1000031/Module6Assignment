@@ -1,4 +1,4 @@
-function val = single_run_in_the_money(N, M, dt, S0, r, sig, K)
+function [val, beta] = single_run_in_the_money(N, M, dt, S0, r, sig, K)
 % SINGLE_RUN_IN_THE_MONEY computes Longstaff-Schwartz estimate of an American
 % call option for a single run using only paths that are in the money for the
 % regression estimate.

@@ -32,7 +32,7 @@ fprintf(' Longstaff-Schwartz Monte Carlo method \n');
 P = zeros(R, 1);
 for i = 1:1:R
     fprintf('\nRun No. %d:\n', i);
-    P(i) = single_run_in_the_money(N, M, dt, S0, r, sig, K);
+    [P(i), ~] = single_run(N, M, dt, S0, r, sig, K);
 end
 
 val = mean(P);

@@ -30,3 +30,15 @@ gasoline.ar_ <- arima(gasoline.ts, c(gasoline.order, 0, 0))
 # Run tsdiag
 tsdiag(crude.ar_)
 tsdiag(gasoline.ar_)
+
+# fit ARMA models and run tsdiag
+gasoline.arma <- arima(gasoline.ts, c(gasoline.order, 0, 1))
+tsdiag(gasoline.arma)
+
+# plot crude oil against gasoline prices
+plot(crude_oil$US, gasoline$V1)
+
+# perform linear regression
+gasoline.crude.lm <- lm(crude_oil$US ~ gasoline$V1)
+plot(gasoline.crude.lm)
+

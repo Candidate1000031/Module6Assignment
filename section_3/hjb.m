@@ -52,10 +52,25 @@ for j = 1:J
     beta = beta_central .* mask + beta_fb .* inverse_mask;
 
     % TODO possible take time into account already here
-    gamma_ = -alpha - beta;
+    gamma_ = -alpha - beta - 1 / dt;
 
     coeff_matrices{j} = ...
         spdiags([alpha gamma_ beta], -1:1, N + 1, N + 1);
+    % TODO incorporate the boundary conditions
 end
 
-% incorporate the boundary conditions
+% loop over time steps
+for m = 1:M
+    rhs = -V / dt;
+
+    fprintf('Timestep %d:\n', m);
+
+    % TODO
+    % incorporate the boundary conditions for the rhs, but not for the Vini
+    [V, k] = policyIteration(coeff_matrices, rhs, V);
+end
+
+figure
+plot(W, V);
+figure
+plot(W, k)

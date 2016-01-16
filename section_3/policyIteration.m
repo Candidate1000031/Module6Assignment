@@ -39,4 +39,5 @@ function [Vnew, k] = policyIteration(coeff_matrices, rhs, Vini)
         Vnew = mat \ rhs;
         it = it + 1;
     end
+    fprintf('Iterations needed: %d\n', it);
 end

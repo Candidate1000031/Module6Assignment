@@ -11,9 +11,9 @@ pmax = 1.5;
 Wmax = 5;
 
 % number of timesteps
-M = 1600;
+M = 10;
 % number of mesh intervals
-N = 100;
+N = 9;
 % number of discrete values for p
 J = 8;
 
@@ -28,10 +28,10 @@ t = linspace(0, T, M + 1);
 p = linspace(0, pmax, J);
 
 % initialize V
-V = initializeV(gamma, N, dW);
+V = initializeV(gamma, W);
 
 % cells for storing the coefficient matrices
-coeff_matrices = cells(1, J);
+coeff_matrices = cell(1, J);
 
 % parameters and coefficients
 for j = 1:J
@@ -55,5 +55,7 @@ for j = 1:J
     gamma_ = -alpha - beta;
 
     coeff_matrices{j} = ...
-        spdiags([alpha gamma_ beta], -1:1, N + 1, N + 1).';
+        spdiags([alpha gamma_ beta], -1:1, N + 1, N + 1);
 end
+
+% incorporate the boundary conditions

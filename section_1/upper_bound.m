@@ -33,16 +33,17 @@ fprintf('Running Longstaff-Schwartz lower bound calculations\n');
 dW = sqrt(dt)*randn(N,M);                              % Brownian increments
 S  = cumprod([repmat(S0,1,M); exp((r-sig^2/2)*dt+sig*dW)]);  % paths
 
-M = zeros(N, M);
+mart = zeros(N, M);
 for k = 2:1:N
-    M(k, :) = glasserman_martingale(M(k - 1, :)', S(k - 1, :)', S(k, :)', ...
-                                    betas(k, :)', dt, r, sig, K, P);
+    mart(k, :) = glasserman_martingale(mart(k - 1, :)', S(k - 1, :)', ...
+                                       S(k, :)', betas(k, :)', dt, r, sig, ...
+                                       K, P);
 end
 
 %
 % Phase 3: estimate expectation using mean
 %
-res = max(max(K - S(1:N, :), 0) - M);
+res = max(max(K - S(1:N, :), 0) - mart);
 val = mean(res);
 sd = std(res);
 

@@ -1,4 +1,4 @@
-function [V_Wmax] = boundaryValues(pi, r, gamma, Wmax, t)
+function [V_Wmax] = boundaryValues(pi, r, gamma, Wmax, t, T)
 %BOUNDARYVALUES calculates the boundary values for W = Wmax
     tau = T - t;
 

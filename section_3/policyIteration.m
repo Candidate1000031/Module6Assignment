@@ -4,13 +4,13 @@ function [Vnew, k] = policyIteration(coeff_matrices, rhs, Vini)
     Vnew = Vini;
     Vold = 2 * Vini;
     
-    eps = 1e-6;
+    eps = 1e-10;
     maxit = 50;
     it = 0;
 
     J = length(coeff_matrices);
 
-    while (norm(Vold - Vnew) / norm(Vini) > eps && it < maxit)
+    while (norm(Vold - Vnew) / norm(Vold) > eps && it < maxit)
         Vold = Vnew;
         
         % k will hold the index of the p_k that minimizes the lhs
@@ -39,5 +39,4 @@ function [Vnew, k] = policyIteration(coeff_matrices, rhs, Vini)
         Vnew = mat \ rhs;
         it = it + 1;
     end
-    fprintf('Iterations needed: %d\n', it);
 end

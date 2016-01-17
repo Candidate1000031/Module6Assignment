@@ -76,6 +76,8 @@ plot(W, V);
 xlabel('Wealth W');
 ylabel('V(W, 0)');
 figure
-plot(W, k * pmax / (J - 1))
+plot(W, (k - 1) * pmax / (J - 1))
 xlabel('Wealth W');
 ylabel('Optimal control p(W, t = 0)');
+
+fprintf('Value at t = 0 and W = 1: %f', V(1 / dW))
